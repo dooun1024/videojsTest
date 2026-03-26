@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(ng version)",
+      "Bash(npm show video.js versions --json)",
+      "Bash(node -e \"const v=JSON.parse\\(require\\(''fs''\\).readFileSync\\(''/dev/stdin'',''utf8''\\)\\); const v8=v.filter\\(x=>x.startsWith\\(''8.''\\)\\); console.log\\(''8.x versions:'', v8.slice\\(-10\\).join\\('', ''\\)\\); console.log\\(''latest:'', v[v.length-1]\\);\")",
+      "Bash(python -c \"import sys,json; v=json.load\\(sys.stdin\\); v8=[x for x in v if x.startswith\\(''8.''\\)]; print\\(''8.x versions \\(last 10\\):'', v8[-10:]\\); print\\(''latest:'', v[-1]\\)\")",
+      "Bash(aws sts get-caller-identity)",
+      "Bash(aws --version)"
+    ]
+  }
+}

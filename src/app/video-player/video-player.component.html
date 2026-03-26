@@ -1,0 +1,65 @@
+<div class="page-wrapper">
+
+  <header class="page-header">
+    <h1>Video.js Cookie 测试</h1>
+    <p>验证视频请求是否正确携带 Cookie（withCredentials）</p>
+  </header>
+
+  <div class="player-box">
+    <video #videoEl
+      class="video-js vjs-default-skin vjs-big-play-centered"
+      playsinline>
+    </video>
+  </div>
+
+  <section class="config-panel">
+    <h2 class="panel-title">初始化配置</h2>
+    <div class="config-grid">
+      @for (item of configItems; track item.label) {
+        <div class="config-row">
+          <span class="config-label">{{ item.label }}</span>
+          <span class="config-value">
+            @if (item.badge) {
+              <span class="badge">{{ item.badge }}</span>
+            }
+            @if (item.value) {
+              <span class="text-value">{{ item.value }}</span>
+            }
+            @if (item.hint) {
+              <span class="hint">{{ item.hint }}</span>
+            }
+          </span>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="code-panel">
+    <h2 class="panel-title">初始化代码</h2>
+    <pre class="code-block"><code>videojs(videoElement, &#123;
+  crossOrigin: <span class="hl">'use-credentials'</span>,   // 原生 &lt;video&gt; 元素
+  sources: [&#123; src: '...', type: 'video/mp4' &#125;],
+  html5: &#123;
+    vhs: &#123; withCredentials: <span class="hl">true</span> &#125;,  // VHS (HLS/DASH)
+    hls: &#123; withCredentials: <span class="hl">true</span> &#125;   // 兼容旧版
+  &#125;
+&#125;);</code></pre>
+  </section>
+
+  <section class="tip-panel">
+    <h2 class="panel-title">如何验证 Cookie 是否携带</h2>
+    <ol class="steps">
+      <li>打开浏览器 <strong>DevTools</strong>（F12）</li>
+      <li>切换到 <strong>Network</strong> 标签</li>
+      <li>点击播放，找到 <code>sample.mp4</code> 请求</li>
+      <li>查看 <strong>Request Headers</strong> 是否包含 <code>Cookie</code> 字段</li>
+      <li>查看请求是否包含 <code>withCredentials: true</code> 标记</li>
+    </ol>
+    <div class="notice">
+      <strong>注意：</strong>Cookie 跨域生效需服务端设置
+      <code>Access-Control-Allow-Origin</code>（不能为 <code>*</code>）和
+      <code>Access-Control-Allow-Credentials: true</code>。
+    </div>
+  </section>
+
+</div>
