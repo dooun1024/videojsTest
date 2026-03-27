@@ -35,6 +35,11 @@
   min-height: 360px;
 }
 
+/* 未播放时也显示控制栏 */
+:host ::ng-deep .video-js .vjs-control-bar {
+  display: flex !important;
+}
+
 /* ---- panels ---- */
 .config-panel,
 .code-panel,
